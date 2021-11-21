@@ -16,10 +16,8 @@ def presetParsing(pres_path):
     text = open(pres_path,encoding='utf_8_sig')
 
     while True:
-        # считываем строку
         line = text.readline()
         massPres.append(line.strip())
-        # прерываем цикл, если строка пустая
         if not line:
             return massPres
             break
