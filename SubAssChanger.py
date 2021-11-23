@@ -1,4 +1,5 @@
 import tkinter as tk
+import re
 from tkinter import filedialog
 
 root = tk.Tk()
@@ -9,11 +10,13 @@ pres_path = filedialog.askopenfilename(initialdir = "/",title = "Выбрать 
 
 
 
-text = open(sub_path,encoding='utf_8_sig')
+
+'I want a giraffe for my birthday'
+text = open(sub_path,encoding='UTF-8')
 
 def presetParsing(pres_path):
     massPres = []
-    text = open(pres_path,encoding='utf_8_sig')
+    text = open(pres_path,encoding='UTF-8')
 
     while True:
         line = text.readline()
@@ -25,16 +28,19 @@ def presetParsing(pres_path):
 def changeWords(text,presets_mass):
     intext = text.read()
     count = len(presets_mass)
+    insensitive_hippo = ""
     for i in range(count-1):
+
         preset = presets_mass[i].split(':')
-        intext = intext.replace(preset[0],preset[1])
+        insensitive_hippo = re.compile(re.escape(preset[0]), re.IGNORECASE)
+        intext = insensitive_hippo.sub(preset[1],intext)
     return intext
 
 presets_mas = presetParsing(pres_path)
 change = changeWords(text,presets_mas)
 
 
-openfile = open("NEW_SUB.ass",'tw',encoding='utf-8')
+openfile = open("NEW_SUB.ass",'tw',encoding='UTF-8')
 openfile.write(change)
 openfile.close()
 
