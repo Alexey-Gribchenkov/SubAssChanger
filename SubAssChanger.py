@@ -10,8 +10,6 @@ pres_path = filedialog.askopenfilename(initialdir = "/",title = "Выбрать 
 
 
 
-
-'I want a giraffe for my birthday'
 text = open(sub_path,encoding='UTF-8')
 
 def presetParsing(pres_path):
